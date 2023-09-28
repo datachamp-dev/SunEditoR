@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.env.linux": {
+        "R_HOME": "/opt/R/4.2.3/lib/R"
+    },
+    "r.rpath.linux": "/opt/R/4.2.3/bin/R"
+}
