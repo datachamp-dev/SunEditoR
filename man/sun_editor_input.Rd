@@ -46,6 +46,24 @@ of \code{"both"}, \code{"none"}, \code{"vertical"}, and \code{"horizontal"}. The
 \code{NULL}, will use the client browser's default setting for resizing
 textareas.}
 }
+\value{
+A textarea input control with sun editor that can be added to a UI definition.
+}
 \description{
 Create a textarea input with sun editor
+}
+\examples{
+
+if (interactive()) {
+
+ui <- fluidPage(
+    sun_editor_input("editor", "Editor", "Type here", width = "800px"),
+    textOutput("text")
+)
+server <- function(input, output) {
+    output$text <- renderText({ input$editor })
+}
+shinyApp(ui, server)
+
+}
 }

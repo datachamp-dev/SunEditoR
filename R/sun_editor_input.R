@@ -24,7 +24,26 @@
 #'     `NULL`, will use the client browser's default setting for resizing
 #'     textareas.
 #' 
+#' @return A textarea input control with sun editor that can be added to a UI definition. 
+#' 
 #' @importFrom htmltools singleton tagList tags
+#' 
+#' @export
+#' 
+#' @examples
+#' 
+#' if (interactive()) {
+#' 
+#' ui <- fluidPage(
+#'     sun_editor_input("editor", "Editor", "Type here", width = "800px"),
+#'     textOutput("text")
+#' )
+#' server <- function(input, output) {
+#'     output$text <- renderText({ input$editor })
+#' }
+#' shinyApp(ui, server)
+#' 
+#' }
 
 sun_editor_input <- function(
     input_id, 
@@ -50,7 +69,7 @@ sun_editor_input <- function(
                 src = "https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"
             ),
             tags$script(
-                src = system.file("js/sun_editor_input_binding.js", package = "SunEditoR")
+                src = "suneditorjs/sun_editor_input_binding.js"
             )
         )),
 
