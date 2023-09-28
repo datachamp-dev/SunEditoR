@@ -1,0 +1,14 @@
+Package: SunEditoR
+Title: Wrapper for the SunEditor Javascript library.
+Version: 0.0.1
+Authors@R: 
+    person("Charles", "Bordet", , "charles@datachamp.fr", role = c("aut", "cre"))
+Description: The SunEditor Javascript library is a WYSIWYG web editor, with no
+    dependencies. This package provides a set of functions to use it in R. It
+    allows you to transform a textarea into a WYSIWYG editor.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+URL: https://gitlab.datachamp.fr/datachamp/SunEditoR
+BugReports: https://gitlab.datachamp.fr/datachamp/SunEditoR/issues
