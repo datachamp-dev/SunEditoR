@@ -77,6 +77,7 @@ sun_editor_input <- function(
         tags$div(
             class = "form-group shiny-input-container sun-editor-editable",
             id = input_id,
+            style = "width: 100%",
             shiny::textAreaInput(
                 inputId = input_id,
                 label = label,
