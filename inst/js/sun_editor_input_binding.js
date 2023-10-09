@@ -3,10 +3,13 @@ var sun_editor_binding = new Shiny.InputBinding();
 
 $.extend(sun_editor_binding, {
     find: function(scope) {
-        return $(scope).find(".sun-editor-editable textarea");
+        return $(scope).find(".sun-editor-textarea textarea");
     },
     initialize: function(el) {
-        var editorInstance = SUNEDITOR.create(el);
+        var placeholder = $(el).attr("placeholder") || "";
+        var editorInstance = SUNEDITOR.create(el, {
+            placeholder: placeholder
+        });
         editorInstance.onChange = function(contents) {
             $(el).trigger("sunEditorChanged");
         }
@@ -21,6 +24,26 @@ $.extend(sun_editor_binding, {
         $(el).on("sunEditorChanged", function(e) {
             callback();
         });
+    },
+    receiveMessage: function(el, data) {
+        var editorInstance = $(el).data("sunEditorInstance");
+        // Update value
+        if (data.hasOwnProperty("value")) {
+            editorInstance.setContents(data.value);
+        }
+        // Update the label
+        if (data.hasOwnProperty("label")) {
+            var $label = $container.find('label');
+            if ($label.length > 0) {
+                $label.text(data.label);
+            } else {
+                $container.prepend($('<label>', { for: el.id, text: data.label }));
+            }
+        }
+        // Update the placeholder
+        if (data.hasOwnProperty("placeholder")) {
+            editorInstance.placeholder = data.placeholder;
+        }
     }
 })
 

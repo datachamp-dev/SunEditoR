@@ -3,4 +3,5 @@
 
 .onLoad <- function(libname, pkgname) {
     shiny::addResourcePath("suneditorjs", system.file("js", package = "SunEditoR"))
+    shiny::addResourcePath("suneditorcss", system.file("css", package = "SunEditoR"))
 }

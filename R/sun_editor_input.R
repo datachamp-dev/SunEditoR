@@ -58,7 +58,6 @@ sun_editor_input <- function(
 ) {
 
     tagList(
-
         # Import JS and CSS files
         singleton(tags$head(
             tags$link(
@@ -70,12 +69,15 @@ sun_editor_input <- function(
             ),
             tags$script(
                 src = "suneditorjs/sun_editor_input_binding.js"
+            ),
+            tags$link(
+                href = "suneditorcss/main.css",
+                rel = "stylesheet"
             )
         )),
-
         # Create the textarea
         tags$div(
-            class = "form-group shiny-input-container sun-editor-editable",
+            class = "form-group shiny-input-container sun-editor-textarea",
             id = input_id,
             style = "width: 100%",
             shiny::textAreaInput(
@@ -90,8 +92,34 @@ sun_editor_input <- function(
                 resize = resize
             )
         )
-
-
     )
 
+}
+
+#' Change the value of a SunEditor input on the client
+#' 
+#' Change the value of a SunEditor input on the client
+#' 
+#' @param session The `session`` object passed to function given to 
+#'     `shinyServer`. Default is `getDefaultReactiveDomain()`.
+#' @param input_id The id of the input object.
+#' @param label The label to set for the input object.
+#' @param value Initial value.
+#' @param placeholder A character string giving the user a hint as to
+#'     what can be entenred into the control.
+
+update_sun_editor_input <- function(
+    session = shiny::getDefaultReactiveDomain(),
+    input_id,
+    label = NULL,
+    value = NULL,
+    placeholder = NULL
+) {
+    shiny:::validate_session_object(session)
+    message <- shiny:::dropNulls(list(
+        label = label,
+        value = value,
+        placeholder = placeholder
+    ))
+    session$sendInputMessage(input_id, message)
 }
