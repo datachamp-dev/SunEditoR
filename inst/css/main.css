@@ -1,4 +1,14 @@
 
-.sun-editor-textarea {
-    padding: 16px;
+.sun-editor-editable {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.sun-editor {
+    font-family: inherit;
 }
