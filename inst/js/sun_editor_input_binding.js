@@ -5,16 +5,18 @@ $.extend(sun_editor_binding, {
     find: function(scope) {
         return $(scope).find(".sun-editor-textarea textarea");
     },
-    initialize: function(el) {
-        var placeholder = $(el).attr("placeholder") || "";
-        var editorInstance = SUNEDITOR.create(el, {
-            placeholder: placeholder
-        });
-        editorInstance.onChange = function(contents) {
-            $(el).trigger("sunEditorChanged");
-        }
-        $(el).data("sunEditorInstance", editorInstance);
-    },
+        initialize: function(el) {
+            var placeholder = $(el).attr("placeholder") || "";
+            var options = JSON.parse($(el.parentNode.parentNode).attr("data-options") || "{}");
+            console.log(options);
+            options.placeholder = placeholder;
+            var editorInstance = SUNEDITOR.create(el, options);
+            console.log(options);
+            editorInstance.onChange = function(contents) {
+                $(el).trigger("sunEditorChanged");
+            }
+            $(el).data("sunEditorInstance", editorInstance);
+        },
     getValue: function(el) {
         var editorInstance = $(el).data("sunEditorInstance");
         return editorInstance.getContents();

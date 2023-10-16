@@ -54,8 +54,17 @@ sun_editor_input <- function(
     cols = NULL,
     rows = NULL,
     placeholder = NULL,
-    resize = NULL
+    resize = NULL,
+    options = list(
+        buttonList = list(
+            list("undo", "redo"),
+            list("font", "fontSize", "formatBlock")
+        )
+    )
 ) {
+
+    # Serialize options to JSON
+    options <- jsonlite::toJSON(options, auto_unbox = TRUE)
 
     tagList(
         # Import JS and CSS files
@@ -80,6 +89,7 @@ sun_editor_input <- function(
             class = "form-group shiny-input-container sun-editor-textarea",
             id = input_id,
             style = "width: 100%",
+            `data-options` = options,
             shiny::textAreaInput(
                 inputId = input_id,
                 label = label,
