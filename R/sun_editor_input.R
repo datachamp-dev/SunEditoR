@@ -123,6 +123,8 @@ sun_editor_input <- function(
 #' @param value Initial value.
 #' @param placeholder A character string giving the user a hint as to
 #'     what can be entenred into the control.
+#' 
+#' @export
 
 update_sun_editor_input <- function(
     session = shiny::getDefaultReactiveDomain(),
