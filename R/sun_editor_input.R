@@ -23,6 +23,8 @@
 #'     of `"both"`, `"none"`, `"vertical"`, and `"horizontal"`. The default,
 #'     `NULL`, will use the client browser's default setting for resizing
 #'     textareas.
+#' @param options List of options to be passed to `data-options`, e.g.
+#'     'buttonList'.
 #' 
 #' @return A textarea input control with sun editor that can be added to a UI definition. 
 #' 
@@ -33,6 +35,7 @@
 #' @examples
 #' 
 #' if (interactive()) {
+#' library(shiny)
 #' 
 #' ui <- fluidPage(
 #'     sun_editor_input("editor", "Editor", "Type here", width = "800px"),
@@ -58,7 +61,10 @@ sun_editor_input <- function(
     options = list(
         buttonList = list(
             list("undo", "redo"),
-            list("font", "fontSize", "formatBlock")
+            list("font", "fontSize", "formatBlock"),
+            list("bold", "underline", "italic"),
+            list("outdent", "indent", "list"),
+            list("removeFormat", "codeView")
         )
     )
 ) {
