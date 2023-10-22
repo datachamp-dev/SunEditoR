@@ -13,7 +13,10 @@ sun_editor_input(
   cols = NULL,
   rows = NULL,
   placeholder = NULL,
-  resize = NULL
+  resize = NULL,
+  options = list(buttonList = list(list("undo", "redo"), list("font", "fontSize",
+    "formatBlock"), list("bold", "underline", "italic"), list("outdent", "indent",
+    "list"), list("removeFormat", "codeView")))
 )
 }
 \arguments{
@@ -45,6 +48,9 @@ this option.}
 of \code{"both"}, \code{"none"}, \code{"vertical"}, and \code{"horizontal"}. The default,
 \code{NULL}, will use the client browser's default setting for resizing
 textareas.}
+
+\item{options}{List of options to be passed to \code{data-options}, e.g.
+'buttonList'.}
 }
 \value{
 A textarea input control with sun editor that can be added to a UI definition.
@@ -55,6 +61,7 @@ Create a textarea input with sun editor
 \examples{
 
 if (interactive()) {
+library(shiny)
 
 ui <- fluidPage(
     sun_editor_input("editor", "Editor", "Type here", width = "800px"),

@@ -1,6 +1,6 @@
 Package: SunEditoR
 Title: Wrapper for the SunEditor Javascript library
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person("Charles", "Bordet", , "charles@datachamp.fr", role = c("aut", "cre"))
 Description: The SunEditor Javascript library is a WYSIWYG web editor, with no
@@ -14,4 +14,5 @@ URL: https://gitlab.datachamp.fr/datachamp/SunEditoR
 BugReports: https://gitlab.datachamp.fr/datachamp/SunEditoR/issues
 Imports:
     htmltools,
+    jsonlite,
     shiny

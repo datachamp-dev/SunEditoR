@@ -23,6 +23,8 @@
 #'     of `"both"`, `"none"`, `"vertical"`, and `"horizontal"`. The default,
 #'     `NULL`, will use the client browser's default setting for resizing
 #'     textareas.
+#' @param options List of options to be passed to `data-options`, e.g.
+#'     'buttonList'.
 #' 
 #' @return A textarea input control with sun editor that can be added to a UI definition. 
 #' 
@@ -33,6 +35,7 @@
 #' @examples
 #' 
 #' if (interactive()) {
+#' library(shiny)
 #' 
 #' ui <- fluidPage(
 #'     sun_editor_input("editor", "Editor", "Type here", width = "800px"),
@@ -54,8 +57,20 @@ sun_editor_input <- function(
     cols = NULL,
     rows = NULL,
     placeholder = NULL,
-    resize = NULL
+    resize = NULL,
+    options = list(
+        buttonList = list(
+            list("undo", "redo"),
+            list("font", "fontSize", "formatBlock"),
+            list("bold", "underline", "italic"),
+            list("outdent", "indent", "list"),
+            list("removeFormat", "codeView")
+        )
+    )
 ) {
+
+    # Serialize options to JSON
+    options <- jsonlite::toJSON(options, auto_unbox = TRUE)
 
     tagList(
         # Import JS and CSS files
@@ -80,6 +95,7 @@ sun_editor_input <- function(
             class = "form-group shiny-input-container sun-editor-textarea",
             id = input_id,
             style = "width: 100%",
+            `data-options` = options,
             shiny::textAreaInput(
                 inputId = input_id,
                 label = label,
@@ -107,6 +123,8 @@ sun_editor_input <- function(
 #' @param value Initial value.
 #' @param placeholder A character string giving the user a hint as to
 #'     what can be entenred into the control.
+#' 
+#' @export
 
 update_sun_editor_input <- function(
     session = shiny::getDefaultReactiveDomain(),
