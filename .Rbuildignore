@@ -3,3 +3,5 @@
 ^LICENSE\.md$
 .lintr
 .vscode
+^.*\.Rproj$
+^\.Rproj\.user$

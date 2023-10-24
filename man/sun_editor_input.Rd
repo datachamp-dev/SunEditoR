@@ -14,9 +14,8 @@ sun_editor_input(
   rows = NULL,
   placeholder = NULL,
   resize = NULL,
-  options = list(buttonList = list(list("undo", "redo"), list("font", "fontSize",
-    "formatBlock"), list("bold", "underline", "italic"), list("outdent", "indent",
-    "list"), list("removeFormat", "codeView")))
+  toolbar = NULL,
+  options = NULL
 )
 }
 \arguments{
@@ -49,14 +48,40 @@ of \code{"both"}, \code{"none"}, \code{"vertical"}, and \code{"horizontal"}. The
 \code{NULL}, will use the client browser's default setting for resizing
 textareas.}
 
-\item{options}{List of options to be passed to \code{data-options}, e.g.
-'buttonList'.}
+\item{toolbar}{Toolbar mode, one of \code{"default"} and \code{"minimal"}. The default,
+NULL, will use the default buttons.}
+
+\item{options}{List of options to be passed to \code{data-options}, e.g. 'buttonList',
+see details.}
 }
 \value{
 A textarea input control with sun editor that can be added to a UI definition.
 }
 \description{
 Create a textarea input with sun editor
+}
+\details{
+The option \code{toolbar = "minimal"} reduces the number of formatting buttons:
+\code{undo}, \code{redo}, \code{list}, \code{formatBlock} (\code{Paragraph}, \code{h1}, \code{h2}, \code{h3}),
+\code{bold}, \code{underline}, \code{italic}, \code{removeFormat}.
+
+Custom options can be added e.g. to change the layout, add or remove buttons.
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{options = list(
+    buttonList = list(
+        list("undo", "redo"),
+        list("list"),
+        list("formatBlock"),
+        list("bold", "underline", "italic"),
+        list("removeFormat")
+    ),
+    formats = list(
+        "p", "h1", "h2", "h3"
+    )
+)
+}\if{html}{\out{</div>}}
+
+See more details at \url{https://www.jsdelivr.com/package/npm/suneditor}.
 }
 \examples{
 

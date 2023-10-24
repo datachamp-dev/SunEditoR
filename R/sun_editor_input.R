@@ -23,10 +23,37 @@
 #'     of `"both"`, `"none"`, `"vertical"`, and `"horizontal"`. The default,
 #'     `NULL`, will use the client browser's default setting for resizing
 #'     textareas.
-#' @param options List of options to be passed to `data-options`, e.g.
-#'     'buttonList'.
+#' @param toolbar Toolbar mode, one of `"default"` and `"minimal"`. The default,
+#'     NULL, will use the default buttons.
+#' @param options List of options to be passed to `data-options`, e.g. 'buttonList',
+#'     see details.
 #' 
-#' @return A textarea input control with sun editor that can be added to a UI definition. 
+#' @return A textarea input control with sun editor that can be added to a UI definition.
+#' 
+#' @details
+#' The option `toolbar = "minimal"` reduces the number of formatting buttons:
+#'     `undo`, `redo`, `list`, `formatBlock` (`Paragraph`, `h1`, `h2`, `h3`),
+#'     `bold`, `underline`, `italic`, `removeFormat`.
+#' 
+#' Custom options can be added e.g. to change the layout, add or remove buttons.
+#' 
+#' ```
+#' options = list(
+#'     buttonList = list(
+#'         list("undo", "redo"),
+#'         list("list"),
+#'         list("formatBlock"),
+#'         list("bold", "underline", "italic"),
+#'         list("removeFormat")
+#'     ),
+#'     formats = list(
+#'         "p", "h1", "h2", "h3"
+#'     )
+#' )
+#' ```
+#' 
+#' See more details at <https://www.jsdelivr.com/package/npm/suneditor>.
+#' 
 #' 
 #' @importFrom htmltools singleton tagList tags
 #' 
@@ -58,17 +85,35 @@ sun_editor_input <- function(
     rows = NULL,
     placeholder = NULL,
     resize = NULL,
-    options = list(
-        buttonList = list(
-            list("undo", "redo"),
-            list("font", "fontSize", "formatBlock"),
-            list("bold", "underline", "italic"),
-            list("outdent", "indent", "list"),
-            list("removeFormat", "codeView")
-        )
-    )
+    toolbar = NULL,
+    options = NULL
 ) {
 
+    if (!is.null(toolbar) && (!toolbar %in% c("default", "minimal"))) {
+        stop('Argument `toolbar` should be one of "default", "minimal".')
+    }
+    
+    if (!is.null(options) && (!is.null(toolbar) || toolbar != "default")) {
+        message(paste0("Custom options `", options, "` will be applied, and argument",
+                      " `toolbar = '", toolbar, "'` will be ignored."))
+    }
+    
+    # Define 'minimal' toolbar
+    if (is.null(options) && toolbar == "minimal") {
+        options <- list(
+            buttonList = list(
+                list("undo", "redo"),
+                list("list"),
+                list("formatBlock"),
+                list("bold", "underline", "italic"),
+                list("removeFormat")
+            ),
+            formats = list(
+                "p", "h1", "h2", "h3"
+            )
+        )
+    }
+  
     # Serialize options to JSON
     options <- jsonlite::toJSON(options, auto_unbox = TRUE)
 

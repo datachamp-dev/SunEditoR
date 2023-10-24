@@ -1,8 +1,10 @@
 Package: SunEditoR
 Title: Wrapper for the SunEditor Javascript library
-Version: 0.0.2
-Authors@R: 
-    person("Charles", "Bordet", , "charles@datachamp.fr", role = c("aut", "cre"))
+Version: 0.0.3
+Authors@R: c(
+    person("Charles", "Bordet", email = "charles@datachamp.fr", role = c("aut", "cre")),
+    person("Dzimitry", "Markouski", role = c("aut"))
+    )
 Description: The SunEditor Javascript library is a WYSIWYG web editor, with no
     dependencies. This package provides a set of functions to use it in R. It
     allows you to transform a textarea into a WYSIWYG editor.
