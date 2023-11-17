@@ -93,9 +93,9 @@ sun_editor_input <- function(
         stop('Argument `toolbar` should be one of "default", "minimal".')
     }
     
-    if (!is.null(options) && (!is.null(toolbar) || toolbar != "default")) {
+    if (!is.null(options) && (!is.null(toolbar) && toolbar != "default")) {
         message(paste0("Custom options `", options, "` will be applied, and argument",
-                      " `toolbar = '", toolbar, "'` will be ignored."))
+                       " `toolbar = '", toolbar, "'` will be ignored."))
     }
     
     # Define 'minimal' toolbar

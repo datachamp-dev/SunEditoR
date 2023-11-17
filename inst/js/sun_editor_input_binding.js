@@ -8,10 +8,8 @@ $.extend(sun_editor_binding, {
         initialize: function(el) {
             var placeholder = $(el).attr("placeholder") || "";
             var options = JSON.parse($(el.parentNode.parentNode).attr("data-options") || "{}");
-            console.log(options);
             options.placeholder = placeholder;
             var editorInstance = SUNEDITOR.create(el, options);
-            console.log(options);
             editorInstance.onChange = function(contents) {
                 $(el).trigger("sunEditorChanged");
             }
