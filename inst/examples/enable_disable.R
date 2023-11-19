@@ -10,6 +10,10 @@ ui <- function() {
         actionButton(
             inputId = "disable",
             label = "Disable"
+        ),
+        actionButton(
+            inputId = "enable",
+            label = "Enable"
         )
     )
 }
@@ -19,6 +23,12 @@ server <- function(input, output) {
         SunEditoR::update_sun_editor_input(
             input_id = "text",
             disable = TRUE
+        )
+    })
+    observeEvent(input$enable, {
+        SunEditoR::update_sun_editor_input(
+            input_id = "text",
+            enable = TRUE
         )
     })
 }

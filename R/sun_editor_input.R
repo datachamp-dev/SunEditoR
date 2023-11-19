@@ -86,8 +86,7 @@ sun_editor_input <- function(
     placeholder = NULL,
     resize = NULL,
     toolbar = c("default", "minimal", "custom"),
-    options = NULL,
-    disable = FALSE
+    options = NULL
 ) {
 
     toolbar <- match.arg(toolbar)
@@ -163,6 +162,7 @@ sun_editor_input <- function(
 #' @param placeholder A character string giving the user a hint as to
 #'     what can be entenred into the control.
 #' @param disable Set TRUE to disable the input.
+#' @param enable Set TRUE to enable the input.
 #' 
 #' @export
 
@@ -172,14 +172,16 @@ update_sun_editor_input <- function(
     label = NULL,
     value = NULL,
     placeholder = NULL,
-    disable = NULL
+    disable = NULL,
+    enable = NULL
 ) {
     shiny:::validate_session_object(session)
     message <- shiny:::dropNulls(list(
         label = label,
         value = value,
         placeholder = placeholder,
-        disable = disable
+        disable = disable,
+        enable = enable
     ))
     session$sendInputMessage(input_id, message)
 }
