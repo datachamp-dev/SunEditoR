@@ -23,10 +23,10 @@
 #'     of `"both"`, `"none"`, `"vertical"`, and `"horizontal"`. The default,
 #'     `NULL`, will use the client browser's default setting for resizing
 #'     textareas.
-#' @param toolbar Toolbar mode, one of `"default"` and `"minimal"`. The default,
+#' @param toolbar Toolbar mode, one of `"default"`, `"minimal"`, or `"custom"`. The default,
 #'     NULL, will use the default buttons.
 #' @param options List of options to be passed to `data-options`, e.g. 'buttonList',
-#'     see details.
+#'     see details. Only used if `toolbar`` is set to `"custom"`.
 #' 
 #' @return A textarea input control with sun editor that can be added to a UI definition.
 #' 
@@ -85,18 +85,12 @@ sun_editor_input <- function(
     rows = NULL,
     placeholder = NULL,
     resize = NULL,
-    toolbar = NULL,
-    options = NULL
+    toolbar = c("default", "minimal", "custom"),
+    options = NULL,
+    disable = FALSE
 ) {
 
-    if (!is.null(toolbar) && (!toolbar %in% c("default", "minimal"))) {
-        stop('Argument `toolbar` should be one of "default", "minimal".')
-    }
-    
-    if (!is.null(options) && (!is.null(toolbar) && toolbar != "default")) {
-        message(paste0("Custom options `", options, "` will be applied, and argument",
-                       " `toolbar = '", toolbar, "'` will be ignored."))
-    }
+    toolbar <- match.arg(toolbar)
     
     # Define 'minimal' toolbar
     if (is.null(options) && toolbar == "minimal") {
