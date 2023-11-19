@@ -162,6 +162,7 @@ sun_editor_input <- function(
 #' @param value Initial value.
 #' @param placeholder A character string giving the user a hint as to
 #'     what can be entenred into the control.
+#' @param disable Set TRUE to disable the input.
 #' 
 #' @export
 
@@ -170,13 +171,15 @@ update_sun_editor_input <- function(
     input_id,
     label = NULL,
     value = NULL,
-    placeholder = NULL
+    placeholder = NULL,
+    disable = NULL
 ) {
     shiny:::validate_session_object(session)
     message <- shiny:::dropNulls(list(
         label = label,
         value = value,
-        placeholder = placeholder
+        placeholder = placeholder,
+        disable = disable
     ))
     session$sendInputMessage(input_id, message)
 }

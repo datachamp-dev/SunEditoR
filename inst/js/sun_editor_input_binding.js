@@ -44,6 +44,14 @@ $.extend(sun_editor_binding, {
         if (data.hasOwnProperty("placeholder")) {
             editorInstance.placeholder = data.placeholder;
         }
+        // Disable editor
+        if (data.hasOwnProperty("disable")) {
+            console.log(editorInstance);
+            console.log(data.disable);
+            if (data.disable == true) {
+                editorInstance.disable();
+            }
+        }
     }
 })
 
