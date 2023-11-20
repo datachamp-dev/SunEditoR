@@ -14,7 +14,7 @@ sun_editor_input(
   rows = NULL,
   placeholder = NULL,
   resize = NULL,
-  toolbar = NULL,
+  toolbar = c("default", "minimal", "custom"),
   options = NULL
 )
 }
@@ -48,11 +48,11 @@ of \code{"both"}, \code{"none"}, \code{"vertical"}, and \code{"horizontal"}. The
 \code{NULL}, will use the client browser's default setting for resizing
 textareas.}
 
-\item{toolbar}{Toolbar mode, one of \code{"default"} and \code{"minimal"}. The default,
+\item{toolbar}{Toolbar mode, one of \code{"default"}, \code{"minimal"}, or \code{"custom"}. The default,
 NULL, will use the default buttons.}
 
 \item{options}{List of options to be passed to \code{data-options}, e.g. 'buttonList',
-see details.}
+see details. Only used if \verb{toolbar`` is set to }"custom"`.}
 }
 \value{
 A textarea input control with sun editor that can be added to a UI definition.

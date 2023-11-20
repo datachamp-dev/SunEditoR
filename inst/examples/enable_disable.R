@@ -1,6 +1,7 @@
 
 ui <- function() {
-    tagList(
+    fluidPage(
+        SunEditoR::use_sun_editor(),
         SunEditoR::sun_editor_input(
             input_id = "text",
             label = NULL,

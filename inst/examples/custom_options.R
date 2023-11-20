@@ -1,14 +1,17 @@
 
 ui <- function() {
-    SunEditoR::sun_editor_input(
-        input_id = "text",
-        label = NULL,
-        width = "100%",
-        rows = 5,
-        toolbar = "custom",
-        options = list(
-            buttonList = list(
-                list("bold", "underline", "italic")
+    fluidPage(
+        SunEditoR::use_sun_editor(),
+        SunEditoR::sun_editor_input(
+            input_id = "text",
+            label = NULL,
+            width = "100%",
+            rows = 5,
+            toolbar = "custom",
+            options = list(
+                buttonList = list(
+                    list("bold", "underline", "italic")
+                )
             )
         )
     )

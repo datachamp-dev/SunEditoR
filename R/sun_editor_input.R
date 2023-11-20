@@ -113,12 +113,8 @@ sun_editor_input <- function(
     tagList(
         # Import JS and CSS files
         singleton(tags$head(
-            tags$link(
-                href = "https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css",
-                rel = "stylesheet"
-            ),
             tags$script(
-                src = "https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"
+                src = "suneditorjs/sun_editor_input_binding.js"
             ),
             tags$link(
                 href = "suneditorcss/main.css",
@@ -141,11 +137,6 @@ sun_editor_input <- function(
                 rows = rows,
                 placeholder = placeholder,
                 resize = resize
-            )
-        ),
-        singleton(
-            tags$script(
-                src = "suneditorjs/sun_editor_input_binding.js"
             )
         )
     )

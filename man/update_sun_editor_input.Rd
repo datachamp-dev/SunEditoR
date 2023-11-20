@@ -9,7 +9,9 @@ update_sun_editor_input(
   input_id,
   label = NULL,
   value = NULL,
-  placeholder = NULL
+  placeholder = NULL,
+  disable = NULL,
+  enable = NULL
 )
 }
 \arguments{
@@ -23,6 +25,10 @@ update_sun_editor_input(
 
 \item{placeholder}{A character string giving the user a hint as to
 what can be entenred into the control.}
+
+\item{disable}{Set TRUE to disable the input.}
+
+\item{enable}{Set TRUE to enable the input.}
 }
 \description{
 Change the value of a SunEditor input on the client

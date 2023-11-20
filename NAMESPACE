@@ -2,6 +2,7 @@
 
 export(sun_editor_input)
 export(update_sun_editor_input)
+export(use_sun_editor)
 importFrom(htmltools,singleton)
 importFrom(htmltools,tagList)
 importFrom(htmltools,tags)
