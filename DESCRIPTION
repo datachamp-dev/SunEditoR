@@ -1,6 +1,6 @@
 Package: SunEditoR
 Title: Wrapper for the SunEditor Javascript library
-Version: 0.0.5
+Version: 0.0.6
 Authors@R: c(
     person("Charles", "Bordet", email = "charles@datachamp.fr", role = c("aut", "cre")),
     person("Dzimitry", "Markouski", role = c("aut"))
